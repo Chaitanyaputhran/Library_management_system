@@ -3,8 +3,10 @@ package library;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
+import java.awt.event.*;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener {
+    JButton fpassword,login,signup;
     Login(){
         setSize(900,400);
         setLocation(350,200);
@@ -45,26 +47,29 @@ public class Login extends JFrame {
         tfpassword.setBorder(BorderFactory.createEmptyBorder());
         p2.add(tfpassword);
         
-        JButton login=new JButton("Login");
+         login=new JButton("Login");
         login.setBounds(60,200,130,30);
         login.setBackground(new Color(133,193,233));
         login.setForeground(Color.WHITE);
+         login.addActionListener(this);
         login.setBorder(new LineBorder(new Color(133,193,233)));
         p2.add(login);
         
-        JButton signup=new JButton("Signup");
+        signup=new JButton("Signup");
         signup.setBounds(230,200,130,30);
         signup.setBackground(new Color(133,193,233));
         signup.setForeground(Color.WHITE);
         signup.setBorder(new LineBorder(new Color(133,193,233)));
+        signup.addActionListener(this);
         p2.add(signup);
         
            
-        JButton fpassword=new JButton("Forgot Password");
+        fpassword=new JButton("Forgot Password");
         fpassword.setBounds(130,250,130,30);
         fpassword.setBackground(new Color(133,193,233));
         fpassword.setForeground(Color.WHITE);
         fpassword.setBorder(new LineBorder(new Color(133,193,233)));
+        fpassword.addActionListener(this);
         p2.add(fpassword);
         
         JLabel text=new JLabel("Trouble Loging in?");
@@ -76,6 +81,22 @@ public class Login extends JFrame {
         setVisible(true);
         
         
+    }
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource()==fpassword){
+            setVisible(false);
+            new Forgotpassword();
+        }
+        else if(ae.getSource()==login){
+            try{
+                
+            }catch(Exception e){
+                
+            }
+        }else{
+            setVisible(false);
+            new Signup();
+        }
     }
     public static void main(String[] args){
         new Login();
