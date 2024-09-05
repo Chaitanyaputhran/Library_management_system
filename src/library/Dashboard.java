@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Dashboard extends JFrame implements ActionListener{
-    JButton addbooks;
+    JButton addbooks,deletebooks;
   
     Dashboard(){
 //        setBounds(0,0,1600,1000);
@@ -50,6 +50,16 @@ public class Dashboard extends JFrame implements ActionListener{
          addbooks.addActionListener(this);
          p2.add(addbooks);
          
+         deletebooks = new JButton("Add Books");
+         deletebooks.setBounds(0,110,300,50);
+         deletebooks.setBackground(new Color(0,0,102));
+         deletebooks.setForeground(Color.WHITE);
+         deletebooks.setFont(new Font("Tahoma",Font.PLAIN,20));
+         deletebooks.addActionListener(this);
+         p2.add(deletebooks);
+         
+         
+         
         
          
          
@@ -64,6 +74,9 @@ public class Dashboard extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==addbooks){
             new Newbook();
+        }
+        if(ae.getSource()==deletebooks){
+            new DeleteBook();
         }
     }
     public static void main(String [] args){
