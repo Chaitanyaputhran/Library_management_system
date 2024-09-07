@@ -51,7 +51,7 @@ public class Dashboard extends JFrame implements ActionListener{
          p2.add(addbooks);
          
          deletebooks = new JButton("Add Books");
-         deletebooks.setBounds(0,110,300,50);
+         deletebooks.setBounds(0,120,300,50);
          deletebooks.setBackground(new Color(0,0,102));
          deletebooks.setForeground(Color.WHITE);
          deletebooks.setFont(new Font("Tahoma",Font.PLAIN,20));

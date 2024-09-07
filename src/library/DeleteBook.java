@@ -7,16 +7,15 @@ import java.sql.ResultSet;
 
 public class DeleteBook extends JFrame implements ActionListener {
 
-    JTextField tfSearch;
-    JLabel lblTitle, lblAuthor, lblPublisher, lblISBN, lblYear, lblCopies;
-    JButton searchBtn, deleteBtn;
+    JTextField tfSearch, tfTitle, tfAuthor, tfPublisher, tfISBN, tfYear, tfCopies;
+    JButton searchBtn, deleteBtn, updateBtn;
     String bookID;
 
     DeleteBook() {
-        setTitle("Search and Delete Book");
-        setVisible(true);
+        setTitle("Search, Update, and Delete Book");
         setBounds(450, 200, 800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         setLayout(null);
 
         // Search label
@@ -36,36 +35,65 @@ public class DeleteBook extends JFrame implements ActionListener {
         add(searchBtn);
         searchBtn.addActionListener(this);
 
-        // Labels for book details
-        lblTitle = new JLabel("Title: ");
-        lblTitle.setBounds(50, 150, 400, 25);
-        lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        // Title label and text field
+        JLabel lblTitle = new JLabel("Title:");
+        lblTitle.setBounds(50, 150, 100, 25);
+        lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(lblTitle);
+        tfTitle = new JTextField();
+        tfTitle.setBounds(250, 150, 400, 25);
+        tfTitle.setEditable(false);
+        add(tfTitle);
 
-        lblAuthor = new JLabel("Author: ");
-        lblAuthor.setBounds(50, 200, 400, 25);
-        lblAuthor.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        // Author label and text field
+        JLabel lblAuthor = new JLabel("Author:");
+        lblAuthor.setBounds(50, 200, 100, 25);
+        lblAuthor.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(lblAuthor);
+        tfAuthor = new JTextField();
+        tfAuthor.setBounds(250, 200, 400, 25);
+        tfAuthor.setEditable(false);
+        add(tfAuthor);
 
-        lblPublisher = new JLabel("Publisher: ");
-        lblPublisher.setBounds(50, 250, 400, 25);
-        lblPublisher.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        // Publisher label and text field
+        JLabel lblPublisher = new JLabel("Publisher:");
+        lblPublisher.setBounds(50, 250, 100, 25);
+        lblPublisher.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(lblPublisher);
+        tfPublisher = new JTextField();
+        tfPublisher.setBounds(250, 250, 400, 25);
+        tfPublisher.setEditable(false);
+        add(tfPublisher);
 
-        lblISBN = new JLabel("ISBN: ");
-        lblISBN.setBounds(50, 300, 400, 25);
-        lblISBN.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        // ISBN label and text field
+        JLabel lblISBN = new JLabel("ISBN:");
+        lblISBN.setBounds(50, 300, 100, 25);
+        lblISBN.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(lblISBN);
+        tfISBN = new JTextField();
+        tfISBN.setBounds(250, 300, 400, 25);
+        tfISBN.setEditable(false);
+        add(tfISBN);
 
-        lblYear = new JLabel("Year: ");
-        lblYear.setBounds(50, 350, 400, 25);
-        lblYear.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        // Year label and text field
+        JLabel lblYear = new JLabel("Year:");
+        lblYear.setBounds(50, 350, 100, 25);
+        lblYear.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(lblYear);
+        tfYear = new JTextField();
+        tfYear.setBounds(250, 350, 400, 25);
+        tfYear.setEditable(false);
+        add(tfYear);
 
-        lblCopies = new JLabel("Copies: ");
-        lblCopies.setBounds(50, 400, 400, 25);
-        lblCopies.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        // Copies label and text field
+        JLabel lblCopies = new JLabel("Copies:");
+        lblCopies.setBounds(50, 400, 100, 25);
+        lblCopies.setFont(new Font("Tahoma", Font.BOLD, 14));
         add(lblCopies);
+        tfCopies = new JTextField();
+        tfCopies.setBounds(250, 400, 400, 25);
+        tfCopies.setEditable(false);
+        add(tfCopies);
 
         // Delete button (Initially disabled)
         deleteBtn = new JButton("Delete Book");
@@ -73,6 +101,17 @@ public class DeleteBook extends JFrame implements ActionListener {
         deleteBtn.setEnabled(false);
         add(deleteBtn);
         deleteBtn.addActionListener(this);
+
+        // Update button (Initially disabled)
+        updateBtn = new JButton("Update Book");
+        updateBtn.setBounds(450, 450, 150, 30);
+        updateBtn.setEnabled(false);
+        add(updateBtn);
+        updateBtn.addActionListener(this);
+
+        // Revalidate and repaint the JFrame to ensure proper rendering
+        revalidate();
+        repaint();
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -93,15 +132,24 @@ public class DeleteBook extends JFrame implements ActionListener {
                 if (rs.next()) {
                     // Book found, display details
                     bookID = rs.getString("book_id");
-                    lblTitle.setText("Title: " + rs.getString("title"));
-                    lblAuthor.setText("Author: " + rs.getString("author"));
-                    lblPublisher.setText("Publisher: " + rs.getString("publisher"));
-                    lblISBN.setText("ISBN: " + rs.getString("isbn"));
-                    lblYear.setText("Year: " + rs.getString("year_of_publication"));
-                    lblCopies.setText("Copies: " + rs.getString("copies_available"));
+                    tfTitle.setText(rs.getString("title"));
+                    tfAuthor.setText(rs.getString("author"));
+                    tfPublisher.setText(rs.getString("publisher"));
+                    tfISBN.setText(rs.getString("isbn"));
+                    tfYear.setText(rs.getString("year_of_publication"));
+                    tfCopies.setText(rs.getString("copies_available"));
 
-                    // Enable delete button
+                    // Enable delete and update buttons
                     deleteBtn.setEnabled(true);
+                    updateBtn.setEnabled(true);
+
+                    // Allow text fields to be editable for update
+                    tfTitle.setEditable(true);
+                    tfAuthor.setEditable(true);
+                    tfPublisher.setEditable(true);
+                    tfISBN.setEditable(true);
+                    tfYear.setEditable(true);
+                    tfCopies.setEditable(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "No book found with the given ID or Title.");
                     clearFields();
@@ -123,8 +171,36 @@ public class DeleteBook extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Book deleted successfully.");
                         clearFields();
                         deleteBtn.setEnabled(false);
+                        updateBtn.setEnabled(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "Failed to delete the book.");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (ae.getSource() == updateBtn) {
+            if (bookID != null) {
+                String title = tfTitle.getText();
+                String author = tfAuthor.getText();
+                String publisher = tfPublisher.getText();
+                String isbn = tfISBN.getText();
+                String year = tfYear.getText();
+                String copies = tfCopies.getText();
+
+                // Query to update the book details
+                String query = "UPDATE Books SET title = '" + title + "', author = '" + author + "', publisher = '" + publisher + "', isbn = '" + isbn + "', year_of_publication = '" + year + "', copies_available = '" + copies + "' WHERE book_id = '" + bookID + "'";
+
+                try {
+                    Conn c = new Conn();
+                    int result = c.s.executeUpdate(query);
+                    if (result > 0) {
+                        JOptionPane.showMessageDialog(null, "Book details updated successfully.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to update book details.");
                     }
 
                 } catch (Exception e) {
@@ -136,12 +212,12 @@ public class DeleteBook extends JFrame implements ActionListener {
 
     // Method to clear the displayed book details
     private void clearFields() {
-        lblTitle.setText("Title: ");
-        lblAuthor.setText("Author: ");
-        lblPublisher.setText("Publisher: ");
-        lblISBN.setText("ISBN: ");
-        lblYear.setText("Year: ");
-        lblCopies.setText("Copies: ");
+        tfTitle.setText("");
+        tfAuthor.setText("");
+        tfPublisher.setText("");
+        tfISBN.setText("");
+        tfYear.setText("");
+        tfCopies.setText("");
         tfSearch.setText("");
     }
 
@@ -149,7 +225,3 @@ public class DeleteBook extends JFrame implements ActionListener {
         new DeleteBook();
     }
 }
-
-
-
-
