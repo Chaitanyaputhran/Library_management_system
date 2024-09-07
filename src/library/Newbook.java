@@ -4,23 +4,13 @@ import java.awt.Font;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Newbook extends JFrame implements ActionListener {
+public class Newbook extends JPanel implements ActionListener {
 
     JTextField tfTitle, tfAuthor, tfPublisher, tfISBN, tfYear, tfCopies;
-    JLabel lblBookID;
     JButton submitBtn;
-  
 
-    Newbook() {
-        setTitle("Add New Book");
-        setVisible(true);
-        setBounds(450, 200, 850, 650);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Newbook() {
         setLayout(null);
-
-  
-
-       
 
         // Title label
         JLabel titleLabel = new JLabel("Title:");
@@ -93,11 +83,9 @@ public class Newbook extends JFrame implements ActionListener {
         submitBtn.setBounds(310, 400, 120, 30);
         add(submitBtn);
         submitBtn.addActionListener(this);
-
-        // Refresh/repaint the frame to ensure visibility
-        repaint();
     }
 
+    @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == submitBtn) {
             String title = tfTitle.getText();
@@ -108,7 +96,7 @@ public class Newbook extends JFrame implements ActionListener {
             String copies = tfCopies.getText();
 
             if (title.isEmpty() || author.isEmpty() || year.isEmpty() || copies.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Please fill in all the required fields.");
+                JOptionPane.showMessageDialog(this, "Please fill in all the required fields.");
                 return;
             }
 
@@ -123,17 +111,16 @@ public class Newbook extends JFrame implements ActionListener {
             try {
                 Conn c = new Conn();
                 c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Book added successfully.");
-                setVisible(false);
-                new Newbook();
-
+                JOptionPane.showMessageDialog(this, "Book added successfully.");
+                tfTitle.setText("");
+                tfAuthor.setText("");
+                tfPublisher.setText("");
+                tfISBN.setText("");
+                tfYear.setText("");
+                tfCopies.setText("");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Newbook();
     }
 }
