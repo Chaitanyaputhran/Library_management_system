@@ -5,17 +5,14 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
 
-public class DeleteBook extends JFrame implements ActionListener {
+public class DeleteBook extends JPanel implements ActionListener {
 
     JTextField tfSearch, tfTitle, tfAuthor, tfPublisher, tfISBN, tfYear, tfCopies;
     JButton searchBtn, deleteBtn, updateBtn;
     String bookID;
 
     DeleteBook() {
-        setTitle("Search, Update, and Delete Book");
-        setBounds(450, 200, 800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+       
         setLayout(null);
 
         // Search label
@@ -221,7 +218,5 @@ public class DeleteBook extends JFrame implements ActionListener {
         tfSearch.setText("");
     }
 
-    public static void main(String[] args) {
-       
-    }
+   
 }

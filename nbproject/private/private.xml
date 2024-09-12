@@ -5,12 +5,16 @@
         <group>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Splash.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Signup.java</file>
-            <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Conn.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Login.java</file>
+            <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Userlogin.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Forgotpassword.java</file>
+            <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Userdashboard.java</file>
+            <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Borrowedbooks.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Dashboard.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Newbook.java</file>
+            <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Conn.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/Loading.java</file>
+            <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/UsersSignup.java</file>
             <file>file:/C:/Users/lenovoi/Documents/NetBeansProjects/Library/src/library/DeleteBook.java</file>
         </group>
     </open-files>

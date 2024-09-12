@@ -88,11 +88,15 @@ public class Dashboard extends JFrame implements ActionListener {
             mainContentPanel.revalidate();
             mainContentPanel.repaint();
         } else if (ae.getSource() == deletebooks) {
-            // Open DeleteBook form
-            new DeleteBook().setVisible(true);
+            mainContentPanel.removeAll(); // Clear any previous content
+            DeleteBook deleteBooksForm = new DeleteBook();
+            mainContentPanel.add(deleteBooksForm);
+            mainContentPanel.revalidate();
+            mainContentPanel.repaint();
+            
         } else if (ae.getSource() == borrowedbooks) {
             mainContentPanel.removeAll(); 
-            Boorowedbooks borrowedBooksForm = new Boorowedbooks();
+            Borrowedbooks borrowedBooksForm = new Borrowedbooks();
             mainContentPanel.add(borrowedBooksForm);
             mainContentPanel.revalidate();
             mainContentPanel.repaint();
